@@ -1,0 +1,11 @@
+---
+title: "Biostat 214 model"
+author: "William Scott-Curtis"
+date: "2023-12-11"
+output: pdf_document
+---
+
+```{r}
+
+```
+

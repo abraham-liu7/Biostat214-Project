@@ -1,0 +1,101 @@
+Time,Sample Size,Approval Rate (unadjusted),Variance(estimated by p(1-p)),Source
+Dec. 3-7,"1,500LV",44%,25%,Rasmussen Reports
+Dec. 4-6,"1,000RV",41%,24%,Emerson College
+Dec. 4-5,"1,000RV",39%,24%,RMG Research
+Dec. 2-5,"1,500A",39%,24%,YouGov
+Nov. 29-Dec. 5,"45,000A",37%,23%,Morning Consult
+Nov. 30-Dec. 4,"1,074A",41%,24%,AP-NORC
+Dec. 1-3,"1,017A",40%,24%,Ipsos
+Nov. 27-Dec. 3,"3,021A",38%,24%,Big Village
+Nov. 29-Dec. 1,"1,464A",33%,22%,TIPP Insights
+Nov. 27-Dec. 1,"2,018RV",38%,24%,Harris Insights & Analytics
+Nov. 27-30,"2,000RV",38%,24%,McLaughlin & Associates
+Nov. 26-30,"1,500LV",44%,25%,Rasmussen Reports
+Nov. 1-30,"1,795A",37%,23%,SSRS
+Nov. 1-30,620RV,36%,23%,ActiVote
+Nov. 22-28,"45,000A",38%,24%,Morning Consult
+Nov. 22-28,"4,003RV",38%,24%,Harris Insights & Analytics
+Nov. 27,"1,000RV",40%,24%,RMG Research
+Nov. 26-27,"3,200RV",42%,24%,NewsNation
+Nov. 25-27,"1,500A",41%,24%,YouGov
+Nov. 24-26,"1,001A",35%,23%,Leger
+Nov. 15-21,"1,500LV",44%,25%,Rasmussen Reports
+Nov. 15-21,"45,000A",38%,24%,Morning Consult
+Nov. 1-21,"1,013A",37%,23%,Gallup
+Nov. 18-20,"1,500A",40%,24%,YouGov
+Nov. 17-20,"1,100A",37%,23%,American Research Group
+Nov. 17-20,"1,475RV",38%,24%,Emerson College
+Nov. 16-20,"1,000LV",43%,25%,McLaughlin & Associates
+Nov. 15-19,"3,017RV",39%,24%,Harris Insights & Analytics
+Nov. 14-17,"1,006LV",39%,24%,Echelon Insights
+Nov. 15-16,"2,851RV",45%,25%,Harris Insights & Analytics
+Nov. 13-14,"1,000RV",39%,24%,RMG Research
+Nov. 11-14,"1,500A",41%,24%,YouGov
+Nov. 10-14,"1,200A",44%,25%,The Bullfinch Group
+Nov. 10-14,"1,000RV",40%,24%,Hart Research Associates/Public Opinion Strategies
+Nov. 8-14,"1,500LV",44%,25%,Rasmussen Reports
+Nov. 8-14,"45,000A",38%,24%,Morning Consult
+Nov. 10-13,"1,001RV",40%,24%,Beacon Research/Shaw & Co. Research
+Nov. 9-13,"1,584A",38%,24%,YouGov
+Nov. 9-13,"1,743A",36%,23%,Quinnipiac University
+Nov. 1-11,"10,000A",38%,24%,Lord Ashcroft Polls
+Nov. 8-9,"1,000RV",35%,23%,RMG Research
+Nov. 6-9,"1,429A",42%,24%,Marist College
+Nov. 2-8,"1,500LV",45%,25%,Rasmussen Reports
+Nov. 6-7,"1,000RV",40%,24%,RMG Research
+Nov. 5-7,"1,500A",40%,24%,YouGov
+Nov. 2-7,"1,004RV",40%,24%,Global Strategy Group/North Star Opinion Research
+Nov. 2-7,856RV,40%,24%,Marquette University Law School
+Nov. 1-7,"45,000A",39%,24%,Morning Consult
+Nov. 3-6,"2,000RV",42%,24%,McLaughlin & Associates
+Nov. 2-6,"1,239A",38%,24%,AP-NORC
+Oct. 30-Nov. 5,"2,023A",37%,23%,Big Village
+Nov. 3-4,"1,019A",39%,24%,Ipsos
+Nov. 1-3,"1,400A",39%,24%,TIPP Insights
+Nov. 1-2,"1,000RV",39%,24%,RMG Research
+Oct. 27-Nov. 2,"1,514A",39%,24%,SSRS
+Oct. 30-Nov. 1,"2,021RV",41%,24%,Harris Insights & Analytics
+Oct. 26-Nov. 1,"1,500LV",41%,24%,Rasmussen Reports
+Oct. 28-31,"1,500A",39%,24%,YouGov
+Oct. 28-31,"1,112RV",37%,23%,Civiqs
+Oct. 25-31,"45,000A",38%,24%,Morning Consult
+Oct. 1-31,926RV,39%,24%,ActiVote
+Oct. 27-30,568LV,45%,25%,American Pulse Research & Polling
+Oct. 26-30,"1,772A",36%,23%,Quinnipiac University
+Oct. 26-30,"1,000RV",38%,24%,Global Strategy Group/GBAO (Navigator Research)
+Oct. 29,"1,500RV",38%,24%,Redfield & Wilton Strategies
+Oct. 27-29,"1,000A",37%,23%,Leger
+Oct. 26-27,"1,188A",40%,24%,Slingshot Strategies
+Oct. 25-26,"1,000RV",37%,23%,RMG Research
+Oct. 23-26,"1,029LV",37%,23%,Echelon Insights
+Oct. 20-26,"2,605RV",41%,24%,Noble Predictive Insights
+Oct. 20-26,"1,169RV",37%,23%,Clarity Campaign Labs
+Oct. 19-25,"1,500LV",44%,25%,Rasmussen Reports
+Oct. 23-24,"1,000RV",44%,25%,NewsNation
+Oct. 21-24,"1,500A",40%,24%,YouGov
+Oct. 19-24,"1,000LV",43%,25%,McLaughlin & Associates
+Oct. 18-24,"45,000A",39%,24%,Morning Consult
+Oct. 16-23,"3,029RV",40%,24%,Harris Insights & Analytics
+Oct. 2-23,"1,009A",37%,23%,Gallup
+Oct. 19-22,"2,000RV",42%,24%,McLaughlin & Associates
+Oct. 20-21,"1,222LV",40%,24%,Data for Progress
+Oct. 17-20,"1,000RV",40%,24%,Suffolk University
+Oct. 17-20,"1,100A",38%,24%,American Research Group
+Oct. 18-19,"1,000RV",40%,24%,RMG Research
+Oct. 18-19,"1,000RV",38%,24%,The Winston Group
+Oct. 16-19,"1,878A",40%,24%,YouGov
+Oct. 16-19,"1,000LV",40%,24%,Let's Preserve the American Dream
+Oct. 18,"2,116RV",44%,25%,Harris Insights & Analytics
+Oct. 12-18,"1,500LV",49%,25%,Rasmussen Reports
+Oct. 16-17,"1,578RV",42%,24%,Emerson College
+Oct. 16-17,"1,000RV",41%,24%,RMG Research
+Oct. 14-17,"1,500A",41%,24%,YouGov
+Oct. 11-17,"45,000A",40%,24%,Morning Consult
+Oct. 11-17,"3,318LV",40%,24%,Murphy Nasica & Associates
+Oct. 12-16,"1,675A",39%,24%,YouGov
+Oct. 12-16,"1,737A",37%,23%,Quinnipiac University
+Oct. 12-16,"1,000RV",40%,24%,Global Strategy Group/GBAO (Navigator Research)
+Oct. 11-16,"1,850A",31%,21%,Premise
+Oct. 11-16,"1,001A",37%,23%,Hart Research Associates/Public Opinion Strategies
+Oct. 13-15,869LV,48%,25%,Zogby Analytics
+Oct. 10-15,"1,006A",38%,24%,Selzer & Co.

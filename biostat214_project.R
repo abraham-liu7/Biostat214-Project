@@ -15,8 +15,14 @@ ui <- fluidPage(
     # Output: Tabset w/ plot, summary, and table ----
     tabsetPanel(type = "tabs",
                 tabPanel("Introduction", value = 1, textOutput("intro1"),textOutput("intro2")),
-                tabPanel("Plots", value = 2, plotOutput("ybardistPlot"), plotOutput("kmean"),
-                         textOutput("lowest_k"), plotOutput("sigmadistPlot")),
+                tabPanel("Plots", value = 2, sidebarPanel(
+                  br(),
+                  selectInput("pop", "Voter Population:",
+                              c("Adults" = "a", 
+                                "Registered Voters" = "rv",
+                                "Likely Voters" = "lv")),
+                  br()),
+                  mainPanel(plotOutput("ybardistPlot")), br(), br(), mainPanel(plotOutput("sigmadistPlot"))),
                 id = "conditionedPanels"
     )
   )
@@ -72,7 +78,7 @@ server <- function(input, output) {
 
   # You should define all the rendered output in the server
   output$ybardistPlot <- renderPlot({
-    return(ggplot(data = as.data.frame(y_bar), aes(x = y_bar)) + geom_density() +
+  return(ggplot(data = as.data.frame(y_bar), aes(x = y_bar)) + geom_density() +
              ggtitle("Posterior Distribution for Y Bar"))
   })
 

@@ -2,6 +2,8 @@ library(readr)
 library(tidyverse)
 library(stringr)
 
+########################
+
 #Import data
 Biden <- read_csv("Final/Biden_support_rate_raw.csv")
 
@@ -55,3 +57,33 @@ Biden_clean <- Biden %>%
 
 #Store the cleaned data
 write.csv(Biden_clean, "Final/Biden_support_rate_clean.csv")
+
+
+##################TRUMP Poll########
+Trump <- read_csv("president_approval_polls_historical.csv")
+Biden <- read_csv("approval_polllist.csv")
+
+Cols_Biden <- colnames(Biden)
+Cols_Trump <- colnames(Trump)
+
+Cols_Biden[!(Cols_Biden %in% Cols_Trump)]
+
+Trump_clean <- Trump %>%
+  mutate(polltype = NA,
+         subgroup = NA,
+         raw_sample_size = NA,
+         weight = NA,
+         approve_adjusted = NA,
+         disapprove_adjusted = NA,
+         timestamp = NA) %>%
+  rename(approve = yes,
+         disapprove = no) %>%
+  select(politician, polltype, subgroup, start_date, end_date, 
+         pollster_rating_name, sample_size, raw_sample_size, population, 
+         weight, approve, disapprove, approve_adjusted, disapprove_adjusted, 
+         tracking, url, poll_id, question_id, created_at, timestamp, 
+         pollster_rating_id, subpopulation)
+
+colnames(Trump_clean) == colnames(poll)
+
+write.csv(Trump_clean, file = "approval_polllist_Trump.csv")

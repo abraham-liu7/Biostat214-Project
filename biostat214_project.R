@@ -37,7 +37,7 @@ server <- function(input, output) {
   })
   output$intro2 <- renderText({
     return("By implementing the finite sampling methods we learned in our class,
-           we attempt to analyze the election poll data in 2024 to gain a better
+           we attempt to analyze the 2024 election poll data to gain a better
            understanding of all the intricacies regarding this event.")
   })
   # Only run once

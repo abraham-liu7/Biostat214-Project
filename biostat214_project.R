@@ -95,15 +95,15 @@ server <- function(input, output) {
   # You should define all the rendered output in the server
   output$ybardistPlot <- renderPlot({
     return(ggplot(data = as.data.frame(samples()$Y_bar), aes(x = samples()$Y_bar)) 
-           + geom_density() +
-             ggtitle("Posterior Distribution for Y Bar"))
+           + geom_density() + labs(x = "Population Mean") + 
+             ggtitle("Posterior Distribution of the Finite Population Mean"))
   })
   
   output$sigmadistPlot <- renderPlot({
     return(ggplot(data = as.data.frame(samples()$sigma_post),
                   aes(x = samples()$sigma_post)) 
-           + geom_density() +
-             ggtitle("Posterior Distribution for Sigma"))
+           + geom_density() + labs(x = "Population Variance") + 
+             ggtitle("Posterior Distribution of the Finite Population Variance"))
   })
 }
 

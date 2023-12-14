@@ -21,8 +21,9 @@ ui <- fluidPage(
                   br(),
                   checkboxGroupInput(
                     inputId = "PopSelect", "Select the voter population",
-                    choices = unique(Polls$population),
-                    selected = unique(Polls$population)
+                    c("Likely Voters" = "lv",
+                      "Adults" = "a",
+                      "Registered Voters" = "rv")
                   ),
                   br()),
                   mainPanel(plotOutput("ybardistPlot")), br(), br(), 

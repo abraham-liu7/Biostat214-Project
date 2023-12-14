@@ -17,7 +17,7 @@ ui <- fluidPage(
     tabsetPanel(type = "tabs",
                 tabPanel("Introduction", value = 1, br(), textOutput("intro1"), br(),
                          textOutput("intro2")),
-                tabPanel("Population Parameters", value = 2, br(), sidebarPanel(
+                tabPanel("Posterior Population Parameters", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(
                     inputId = "PopSelect", "Select the voter population",
@@ -26,8 +26,12 @@ ui <- fluidPage(
                       "Registered Voters" = "rv")
                   ),
                   br()),
-                  mainPanel(fluidRow(splitLayout(cellWidths = c("50%", "50%"), plotOutput("ybardistPlot"), plotOutput("sigmadistPlot")))), br(), br(), 
+                  mainPanel(fluidRow(splitLayout(cellWidths = c("50%", "50%"), plotOutput("ybardistPlot"), plotOutput("sigmadistPlot")))),
+                  br(), br(), 
                   ),
+                tabPanel("Predictions", value = 3, br(), sidebarPanel(
+                  br(),
+                  sliderInput("months", "Number of Survey Months", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth"))),
                 id = "conditionedPanels"
     )
   )
@@ -84,6 +88,7 @@ server <- function(input, output) {
     mu_post <- (lambda0*theta + sum(lambda*y_bar))/(lambda0 + sum(lambda))
     sigma_post <- sigma/(lambda0 + sum(lambda))
     Y_bar <- rnorm(n_mc, mean = mu_post, sd = sqrt(sigma_post))
+    
     post_samples <- data.frame(Y_bar, mu_post, sigma_post)
     return(post_samples)
   }
@@ -91,6 +96,7 @@ server <- function(input, output) {
   samples <- reactive({
     Polls %>% filter(population %in% input$PopSelect) %>% posterior_sampler()
   })
+  
   
   # You should define all the rendered output in the server
   output$ybardistPlot <- renderPlot({
@@ -105,6 +111,19 @@ server <- function(input, output) {
            + geom_density() + labs(x = "Population Variance") + 
              ggtitle("Posterior Distribution of the Finite Population Variance"))
   })
+  
+  output$predsbymonth <- renderPlot({
+      newpolls <- Polls %>% mutate(bymonth = floor_date(date(end_date), unit="month")) %>% 
+        mutate(count = match(bymonth, sort(unique(bymonth)))) %>% ungroup()
+      Y_bars <- c()
+      for (i in 1:input$months) {
+        sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
+        Y_bars <- append(Y_bars, mean(sample$Y_bar))
+      }
+      ybardf <- data.frame(survey_month = c(1:input$months), approval_pred = Y_bars)
+      ggplot(ybardf, aes(survey_month, Y_bars)) + geom_line()
+        })
+  
 }
 
 # Run the application

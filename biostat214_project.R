@@ -17,7 +17,7 @@ ui <- fluidPage(
     tabsetPanel(type = "tabs",
                 tabPanel("Introduction", value = 1, textOutput("intro1"),
                          textOutput("intro2")),
-                tabPanel("Plots", value = 2, sidebarPanel(
+                tabPanel("Plots", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(
                     inputId = "PopSelect", "Select the voter population",
@@ -26,8 +26,8 @@ ui <- fluidPage(
                       "Registered Voters" = "rv")
                   ),
                   br()),
-                  mainPanel(plotOutput("ybardistPlot")), br(), br(), 
-                  mainPanel(plotOutput("sigmadistPlot"))),
+                  mainPanel(plotOutput("ybardistPlot"),br(), br(), plotOutput("sigmadistPlot")), br(), br(), 
+                  ),
                 id = "conditionedPanels"
     )
   )

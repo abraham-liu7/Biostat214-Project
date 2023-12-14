@@ -1,5 +1,6 @@
 library(tidyverse)
 library(shiny)
+library(invgamma)
 
 # App Framework - could use more polishing in terms of the introduction
 

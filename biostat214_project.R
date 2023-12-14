@@ -19,11 +19,11 @@ ui <- fluidPage(
                          textOutput("intro2")),
                 tabPanel("Plots", value = 2, sidebarPanel(
                   br(),
-                  selectInput("pop", "Voter Population:",
-                              c("Full" = "f",
-                                "Adults" = "a", 
-                                "Registered Voters" = "rv",
-                                "Likely Voters" = "lv")),
+                  checkboxGroupInput(
+                    inputId = "PopSelect", "Select the voter population",
+                    choices = unique(Polls$population),
+                    selected = unique(Polls$population)
+                  ),
                   br()),
                   mainPanel(plotOutput("ybardistPlot")), br(), br(), 
                   mainPanel(plotOutput("sigmadistPlot"))),
@@ -87,14 +87,9 @@ server <- function(input, output) {
     return(post_samples)
   }
   
-  samples <- eventReactive(input$pop, {
-    if (input$pop == "Full") {
-      posterior_sampler(df = Polls)
-    }
-    else {
-      posterior_sampler(df = Polls[Polls$population == input$pop,])
-    }
-    })
+  samples <- reactive({
+    Polls %>% filter(population %in% input$PopSelect) %>% posterior_sampler()
+  })
   
   # You should define all the rendered output in the server
   output$ybardistPlot <- renderPlot({

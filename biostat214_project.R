@@ -23,7 +23,7 @@ ui <- fluidPage(
                     inputId = "PopSelect", "Select the voter population",
                     c("Likely Voters" = "lv",
                       "Adults" = "a",
-                      "Registered Voters" = "rv")
+                      "Registered Voters" = "rv"), selected = c("lv", "a", "rv")
                   ),
                   br()),
                   mainPanel(fluidRow(splitLayout(cellWidths = c("50%", "50%"), plotOutput("ybardistPlot"), plotOutput("sigmadistPlot")))),
@@ -60,8 +60,8 @@ server <- function(input, output) {
   
   posterior_sampler <- function(df = df) {
     set.seed(0)
-    y_bar <- df$approve[1:100]/100
-    n <- df$sample_size[1:100]
+    y_bar <- df$approve/100
+    n <- df$sample_size
     sample_var <- (y_bar)*(1-y_bar)/n
     
     a0 <- 3

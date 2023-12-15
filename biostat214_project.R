@@ -21,7 +21,8 @@ ui <- fluidPage(
                 tabPanel("Introduction", value = 1, br(), textOutput("intro1"), br(),
                          textOutput("intro2"), br(), textOutput("title1"), br(), 
                          uiOutput("formula1"), br(), textOutput("title2"), br(),
-                         uiOutput("formula2")),
+                         uiOutput("formula2"), br(), 
+                         tags$a(href="https://www.overleaf.com/project/656e51f3ed82d6fc548fd563", "Click here!")),
                 tabPanel("Posterior Population Parameters", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(
@@ -121,7 +122,7 @@ server <- function(input, output) {
                   M_i^{-1} &= \\sum_{j=0}^i \\lambda_j \\hspace{0.5 cm} j = 0,1,2,\\ldots, T\\\\
                   m_i &= \\sum_{j=0}^i \\lambda_j \\overline{\\mathbf{y}}_j \\hspace{0.5 cm} j = 0,1,2,\\ldots, T
                 \\end{align*} \\!$$'),
-      helpText('where we abuse notation and call $$\\overline{\\mathbf{y}}_0 = \\theta \\!$$.')
+      helpText('where we abuse notation and call $$\\overline{\\mathbf{y}}_0 = \\theta \\!$$')
     )
   })
   

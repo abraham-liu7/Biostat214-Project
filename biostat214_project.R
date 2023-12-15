@@ -22,7 +22,8 @@ ui <- fluidPage(
                          textOutput("intro2"), br(), textOutput("title1"), br(), 
                          uiOutput("formula1"), br(), textOutput("title2"), br(),
                          uiOutput("formula2"), br(), 
-                         tags$a(href="https://www.overleaf.com/project/656e51f3ed82d6fc548fd563", "Click here!")),
+                         tags$a(href="https://drive.google.com/file/d/1RWLVoSndeENN-aKNZqbS19h1gXwKSR5E/view?usp=sharing", 
+                                "Complete derivation(open in browser before you click)")),
                 tabPanel("Posterior Population Parameters", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(

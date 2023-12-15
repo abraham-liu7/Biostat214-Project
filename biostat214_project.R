@@ -8,6 +8,8 @@ library(lubridate)
 # Define UI for application
 ui <- fluidPage(
   
+  withMathJax(),
+  
   # Application title
   titlePanel("2024 US Presidential Election Poll Predictions"),
   
@@ -17,7 +19,7 @@ ui <- fluidPage(
     # Output: Tabset w/ plot, summary, and table ----
     tabsetPanel(type = "tabs",
                 tabPanel("Introduction", value = 1, br(), textOutput("intro1"), br(),
-                         textOutput("intro2")),
+                         textOutput("intro2"), br(), uiOutput("intro3")),
                 tabPanel("Posterior Population Parameters", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(
@@ -58,7 +60,30 @@ server <- function(input, output) {
   output$intro2 <- renderText({
     return("By implementing the finite sampling methods we learned in our class,
            we attempt to analyze the 2024 election poll data to gain a better
-           understanding of all the intricacies regarding this event.")
+           understanding of all the intricacies regarding this event. The model
+           is specified below:")
+  })
+  output$intro3 <- renderUI({
+    withMathJax(
+      helpText('Suppose you are given the following data from T surveys:'),
+      helpText('\\begin{align*}
+                  \\{(n_1, \\overline{y}_1, s_1^2), (n_2, \\overline{y}_2, s_2^2), 
+                  \\ldots, (n_T, \\overline{y}_T, s_T^2)\\}
+                  \\end{align*}'),
+      helpText('where the surveys are independently collected, 
+               and the data points come from the distribution:'),
+      helpText('\\begin{align*}
+                  y_1, \\ldots, y_n | \\mu, \\sigma^2 & \\sim \\mathcal{N}(\\mu, \\sigma^2)\\\\
+                  \\mu | \\sigma^2 &\\sim \\mathcal{N}\\left(\\theta, \\frac{\\sigma^2}{n_0}\\right)\\\\
+                  \\sigma^2 & \\sim IG(a_0, b_0)
+                \\end{align*}'),
+      helpText('find
+                $$\\begin{align*}
+                  P(\\overline{Y}, \\sigma^2 | D_t)
+                \\end{align*} \\!$$'),
+      helpText('where $$D_t = \\{(n_1, \\overline{y}_1, s_1^2), \\ldots, 
+               (n_t, \\overline{y}_t, s_t^2)\\} \\!$$')
+      )
   })
   # Only run once
   Polls <- read.csv("approval_polllist.csv")

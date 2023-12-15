@@ -23,7 +23,7 @@ ui <- fluidPage(
                          uiOutput("formula1"), br(), textOutput("title2"), br(),
                          uiOutput("formula2"), br(), 
                          tags$a(href="https://drive.google.com/file/d/1RWLVoSndeENN-aKNZqbS19h1gXwKSR5E/view?usp=sharing", 
-                                "Complete derivation(open in browser before you click)")),
+                                "Complete derivation(open in browser before you click)"), br(), br()),
                 tabPanel("Posterior Population Parameters", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(
@@ -36,13 +36,15 @@ ui <- fluidPage(
                   mainPanel(fluidRow(splitLayout(cellWidths = c("50%", "50%"), plotOutput("ybardistPlot"), plotOutput("sigmadistPlot")))),
                   br(), br(), 
                   ),
-                tabPanel("Predictions", value = 3, br(), textOutput("explanation1"), br(), sidebarPanel(
+                tabPanel("Predictions", value = 3, br(), h1("Biden Approval Rating by Month"), textOutput("explanation1"), br(), sidebarPanel(
                   br(),
                   sliderInput("months", "Months into the Biden Administration", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
                   br(),
+                  br(),
+                  h1("Recent Biden Approval Ratings by Day"),
                   textOutput("explanation2"), br(), sidebarPanel(
                     br(),
-                    sliderInput("days", "Approval Rating Since X Days Ago", 1, 880, 100), br()), mainPanel(plotOutput("lastdays")), br()),
+                    sliderInput("days", "Approval Rating Since X Days Ago", 1, 880, 100), br()), mainPanel(plotOutput("lastdays")), br(), br()),
                 id = "conditionedPanels"
     )
   )
@@ -187,37 +189,43 @@ server <- function(input, output) {
   
   output$explanation1 <- renderText({
     return("This plot illustrates the progression of Biden's approval rating on a monthly basis 
-           since the beginning of his presidency.  Use the sliding scale to 
-           see how Biden's rating fluctuates from the beginning of his 
-           adminitration onward.")
+           since the beginning of his presidency.  Polling began in January 2021. 
+           Between then and now, there have been 36 months of polls conducted. 
+           'Time in Months' is the number of months since polling started, and 
+           roughly represents the number of months since the beginning of his presidency.
+           Use the sliding scale to see how Biden's approval rating fluctuates from the beginning of his 
+           administration onward.")
   })
   output$predsbymonth <- renderPlot({
       newpolls <- Polls %>% 
         mutate(bymonth = floor_date(date(end_date), unit="month")) %>% 
-        mutate(count = match(bymonth, sort(unique(bymonth))))
+        mutate(count = match(bymonth, sort(unique(bymonth), decreasing = FALSE)))
       Y_bars <- c()
-      for (i in 1:input$months) {
+      for (i in (length(unique(newpolls$bymonth))-input$months):length(unique(newpolls$bymonth))) {
         sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
         Y_bars <- append(Y_bars, mean(sample$Y_bar))
       }
-      ybardf <- data.frame(survey_month = c(1:input$months), approval_pred = Y_bars)
+      ybardf <- data.frame(survey_month = c((length(unique(newpolls$bymonth))-input$months):length(unique(newpolls$bymonth))), approval_pred = Y_bars)
       ggplot(ybardf, aes(survey_month, Y_bars)) + geom_line() + xlab("Time in Months")+
         ylab("Approval Rating")
         })
   output$explanation2 <- renderText({
-    return("This plot shows the changes in Biden's approval rating 
-           since the start of his first presindential term on a day by day basis. 
-           Use the sliding scale to see how Biden's rating fluctuates 
-           from any point in time until now (12/10/2023).")
+    return("This plot shows the changes in Biden's approval rating on a daily 
+    basis for a recent time frame of your choice. The polls were conducted from 
+    January 21, 2021 until December 10th, 2023, with a total of 880 polling days. 
+    Use the sliding scale to see how Biden's rating fluctuates from any point in
+    the polling period until now (12/10/2023). These predictions are made based 
+    only on the polls within the indicated period in order to eliminate any possible bias
+    from polls conducted earlier on in his presidency and to shed light on new insights.")
   })
   output$lastdays <- renderPlot({
     newpolls <- Polls %>% mutate(count = match(end_date, sort(unique(end_date), decreasing = FALSE)))
     Y_bars <- c()
-    for (i in (880-input$days):880) {
-      sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
+    for (i in (length(unique(newpolls$end_date))-input$days):length(unique(newpolls$end_date))) {
+      sample <- newpolls %>% filter(count %in% (length(unique(newpolls$end_date))-input$days):i) %>% posterior_sampler()
       Y_bars <- append(Y_bars, mean(sample$Y_bar))
     }
-    ybardf <- data.frame(survey_day = c((880-input$days):880), approval_pred = Y_bars)
+    ybardf <- data.frame(survey_day = c((length(unique(newpolls$end_date))-input$days):length(unique(newpolls$end_date))), approval_pred = Y_bars)
     ggplot(ybardf, aes(survey_day, Y_bars)) + geom_line() +
       xlab("Time in Days")+
       ylab("Approval Rating")

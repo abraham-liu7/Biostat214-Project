@@ -19,7 +19,9 @@ ui <- fluidPage(
     # Output: Tabset w/ plot, summary, and table ----
     tabsetPanel(type = "tabs",
                 tabPanel("Introduction", value = 1, br(), textOutput("intro1"), br(),
-                         textOutput("intro2"), br(), uiOutput("intro3")),
+                         textOutput("intro2"), br(), textOutput("title1"), br(), 
+                         uiOutput("formula1"), br(), textOutput("title2"), br(),
+                         uiOutput("formula2")),
                 tabPanel("Posterior Population Parameters", value = 2, br(), sidebarPanel(
                   br(),
                   checkboxGroupInput(
@@ -63,7 +65,8 @@ server <- function(input, output) {
            understanding of all the intricacies regarding this event. The model
            is specified below:")
   })
-  output$intro3 <- renderUI({
+  output$title1 <- renderText({return("1: Problem Statement")})
+  output$formula1 <- renderUI({
     withMathJax(
       helpText('Suppose you are given the following data from T surveys:'),
       helpText('\\begin{align*}
@@ -85,6 +88,17 @@ server <- function(input, output) {
                (n_t, \\overline{y}_t, s_t^2)\\} \\!$$')
       )
   })
+  output$title2 <- renderText({return("2: Answer:")})
+  output$formula2 <- renderUI({
+    withMathJax(
+      helpText('Suppose you are given the following data from T surveys:'),
+      helpText('\\begin{align*}
+                  \\{(n_1, \\overline{y}_1, s_1^2), (n_2, \\overline{y}_2, s_2^2), 
+                  \\ldots, (n_T, \\overline{y}_T, s_T^2)\\}
+                  \\end{align*}')
+    )
+  })
+  
   # Only run once
   Polls <- read.csv("approval_polllist.csv")
   

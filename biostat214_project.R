@@ -65,7 +65,7 @@ server <- function(input, output) {
            understanding of the current political climate from a purely quantitative
            point of view.  We will be mainly focusing on demonstrating how Biden's
            apprival rating's have changed with time since the beggining of his term 
-           until now(12/10/2023). Doing so, we hope our helps indicate
+           until now(12/10/2023). Doing so, we hope our work helps to indicate
            just how likely Biden is to win a second term.")
   })
   

@@ -65,9 +65,12 @@ server <- function(input, output) {
   })
   output$intro2 <- renderText({
     return("By implementing the finite sampling methods we learned in our class,
-<<<<<<< HEAD
-           we attempt to analyze the 2024 election poll data to gain a better
-           understanding of all the intricacies regarding this event. The model
+           we have attempted to analyze 2024 election poll data to gain a better
+           understanding of the current political climate from a purely quantitative
+           point of view.  We will be mainly focusing on demonstrating how Biden's
+           apprival rating's have changed with time since the beggining of his term 
+           until now(12/10/2023). Doing so, we hope our work helps to indicate
+           just how likely Biden is to win a second term. The model
            is specified below:")
   })
   output$title1 <- renderText({return("1: Problem Statement")})
@@ -103,15 +106,8 @@ server <- function(input, output) {
                   \\end{align*}')
     )
   })
-=======
-           we have attempted to analyze 2024 election poll data to gain a better
-           understanding of the current political climate from a purely quantitative
-           point of view.  We will be mainly focusing on demonstrating how Biden's
-           apprival rating's have changed with time since the beggining of his term 
-           until now(12/10/2023). Doing so, we hope our work helps to indicate
-           just how likely Biden is to win a second term.")
-  })
->>>>>>> 3158139e17ec899f5b32b588321b2c5686d227e1
+         
+
   
   # Only run once
   Polls <- read.csv("approval_polllist.csv")

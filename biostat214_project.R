@@ -192,7 +192,9 @@ server <- function(input, output) {
            since the beginning of his presidency.  Polling began in January 2021. 
            Between then and now, there have been 36 months of polls conducted. 
            'Time in Months' is the number of months since polling started, and 
-           roughly represents the number of months since the beginning of his presidency.
+           roughly represents the number of months since the beginning of his 
+           presidency. A 'Time in Months' of 36 indicates the most recent prediction,
+           the monthly prediction of December 2023. These predictions are made cumulatively by month using all of the polling data.
            Use the sliding scale to see how Biden's approval rating fluctuates from the beginning of his 
            administration onward.")
   })
@@ -214,7 +216,7 @@ server <- function(input, output) {
     basis for a recent time frame of your choice. The polls were conducted from 
     January 21, 2021 until December 10th, 2023, with a total of 880 polling days. 
     Use the sliding scale to see how Biden's rating fluctuates from any point in
-    the polling period until now (12/10/2023). These predictions are made based 
+    the polling period until now (12/10/2023). These predictions are made cumulatively based 
     only on the polls within the indicated period in order to eliminate any possible bias
     from polls conducted earlier on in his presidency and to shed light on new insights.")
   })

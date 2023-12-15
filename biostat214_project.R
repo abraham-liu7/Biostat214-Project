@@ -176,14 +176,14 @@ server <- function(input, output) {
   output$ybardistPlot <- renderPlot({
     return(ggplot(data = as.data.frame(samples()$Y_bar), aes(x = samples()$Y_bar)) 
            + geom_density() + labs(x = "Population Mean", y ="Density") + 
-             ggtitle("Posterior Distribution of the\nFinite Population Mean"))
+             ggtitle("Posterior Distribution \nof the Finite \nPopulation Mean"))
   })
   
   output$sigmadistPlot <- renderPlot({
     return(ggplot(data = as.data.frame(samples()$sigma_post),
                   aes(x = samples()$sigma_post)) 
            + geom_density() + labs(x = "Population Variance", y ="") + 
-             ggtitle("Posterior Distribution of the\nFinite Population Variance"))
+             ggtitle("Posterior Distribution \nof the Finite \nPopulation Variance"))
       
   })
   

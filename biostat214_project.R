@@ -131,7 +131,7 @@ server <- function(input, output) {
         Y_bars <- append(Y_bars, mean(sample$Y_bar))
       }
       ybardf <- data.frame(survey_month = c(1:input$months), approval_pred = Y_bars)
-      ggplot(ybardf, aes(survey_month, Y_bars)) + geom_line() + xlab("Time in Mpnths")+
+      ggplot(ybardf, aes(survey_month, Y_bars)) + geom_line() + xlab("Time in Months")+
         ylab("Approval Rating")
         })
   output$explanation2 <- renderText({

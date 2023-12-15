@@ -68,6 +68,7 @@ server <- function(input, output) {
            until now(12/10/2023). Doing so, we hope our helps indicate
            just how likely Biden is to win a second term.")
   })
+  
   # Only run once
   Polls <- read.csv("approval_polllist.csv")
   

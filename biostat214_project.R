@@ -32,11 +32,11 @@ ui <- fluidPage(
                   ),
                 tabPanel("Predictions", value = 3, br(), textOutput("explanation1"), br(), sidebarPanel(
                   br(),
-                  sliderInput("months", "Number of Survey Months", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
+                  sliderInput("months", "Approval Rating Since X Months Ago", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
                   br(),
                   textOutput("explanation2"), br(), sidebarPanel(
                     br(),
-                    sliderInput("days", "Last X Days of Surveys", 1, 880, 100), br()), mainPanel(plotOutput("lastdays")), br()),
+                    sliderInput("days", "Approval Rating Since X Days Ago", 1, 880, 100), br()), mainPanel(plotOutput("lastdays")), br()),
                 id = "conditionedPanels"
     )
   )

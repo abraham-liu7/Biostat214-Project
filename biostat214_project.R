@@ -83,10 +83,12 @@ server <- function(input, output) {
                   \\ldots, (n_T, \\overline{y}_T, s_T^2)\\}
                 \\end{align*}'),
       helpText('where the surveys are independently collected, 
-               and the data points come from the distribution:'),
+                and the data points come from the distribution:'),
       helpText('\\begin{align*}
-                  y_1, \\ldots, y_n | \\mu, \\sigma^2 & \\sim N(\\mu, \\sigma^2)\\\\
-                  \\mu | \\sigma^2 &\\sim N\\left(\\theta, \\frac{\\sigma^2}{n_0}\\right)\\\\
+                  y_1, \\ldots, y_n | \\mu, \\sigma^2 & \\sim 
+                    N(\\mu, \\sigma^2)\\\\
+                  \\mu | \\sigma^2 &\\sim 
+                    N\\left(\\theta, \\frac{\\sigma^2}{n_0}\\right)\\\\
                   \\sigma^2 & \\sim IG(a_0, b_0)
                 \\end{align*}'),
       helpText('find $$\\begin{align*}

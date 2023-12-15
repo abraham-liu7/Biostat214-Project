@@ -32,7 +32,7 @@ ui <- fluidPage(
                   ),
                 tabPanel("Predictions", value = 3, br(), textOutput("explanation1"), br(), sidebarPanel(
                   br(),
-                  sliderInput("months", "Approval Rating Since X Months Ago", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
+                  sliderInput("months", "Months into the Biden Administration", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
                   br(),
                   textOutput("explanation2"), br(), sidebarPanel(
                     br(),
@@ -119,7 +119,10 @@ server <- function(input, output) {
   })
   
   output$explanation1 <- renderText({
-    return("Some kind of explanation...")
+    return("This plot illustrates the progression of Biden's approval rating 
+           since the beginning of his presidency.  Use the sliding scale to 
+           see how Biden's rating fluctuates from the beginning of his 
+           adminitration onward.")
   })
   output$predsbymonth <- renderPlot({
       newpolls <- Polls %>% 
@@ -135,7 +138,10 @@ server <- function(input, output) {
         ylab("Approval Rating")
         })
   output$explanation2 <- renderText({
-    return("Some kind of explanation...")
+    return("This plot shows the changes in Biden's approval rating 
+           since the start of his first presindential term on a day by day basis. 
+           Use the sliding scale to see how Biden's rating fluctuates 
+           from any point in time until now (12/10/2023).")
   })
   output$lastdays <- renderPlot({
     newpolls <- Polls %>% mutate(count = match(end_date, sort(unique(end_date), decreasing = FALSE)))

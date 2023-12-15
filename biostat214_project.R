@@ -46,19 +46,27 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$intro1 <- renderText({
-    return("The US Presidential is the most important election that happens
-    every four years. The 2024 Election is no different. Incumbent President
-    Joe Biden of the Democratic Party is running for re-election. President
-    Biden defeated his predecessor Donald Trump in the 2020 election, and Mr.
-    Trump is currently campaigning for the Republican presidential nomination.
-    Governor Ron DeSantis, former Ambassador Nikki Haley, and former Governor
-    Chris Christie are a few of the other candidates who are also campaigning
-    for the nomination.")
+    return("The US Presidential election is often considered the most important election. 
+    Not only is it the election for the highest office, but it almost always has a massive impact
+    on other elections throughout the country, namely, congressional elections.\n
+    The 2024 Election is no different. Incumbent President
+    Joe Biden of the Democratic Party is currently running for re-election. Joe
+    Biden defeated his predecessor Donald Trump in the 2020 election, and
+    Trump is currently campaigning for the Republican presidential nomination.\n
+    Biden's 2020 victory was arguably by a slim margin, especially if we consider which states 
+    won him the election and by how little he won them, i.e., Arizona and Georgia.  Since then, 
+    the general consensus is that public opinion of Joe Biden has only gone down, and 
+    by a seemingly substantial amount.\n"
+    )
   })
   output$intro2 <- renderText({
     return("By implementing the finite sampling methods we learned in our class,
-           we attempt to analyze the 2024 election poll data to gain a better
-           understanding of all the intricacies regarding this event.")
+           we have attempted to analyze 2024 election poll data to gain a better
+           understanding of the current political climate from a purely quantitative
+           point of view.  We will be mainly focusing on demonstrating how Biden's
+           apprival rating's have changed with time since the beggining of his term 
+           until now(12/10/2023). Doing so, we hope our helps indicate
+           just how likely Biden is to win a second term.")
   })
   # Only run once
   Polls <- read.csv("approval_polllist.csv")

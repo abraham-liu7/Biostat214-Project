@@ -121,7 +121,8 @@ server <- function(input, output) {
     return("Some kind of explanation...")
   })
   output$predsbymonth <- renderPlot({
-      newpolls <- Polls %>% mutate(bymonth = floor_date(date(end_date), unit="month")) %>% 
+      newpolls <- Polls %>% 
+        mutate(bymonth = floor_date(date(as.POSIXlt(end_date, format = "%m/%d/%y")), unit="month")) %>% 
         mutate(count = match(bymonth, sort(unique(bymonth))))
       Y_bars <- c()
       for (i in 1:input$months) {

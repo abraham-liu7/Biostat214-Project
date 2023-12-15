@@ -19,8 +19,8 @@ ui <- fluidPage(
     # Output: Tabset w/ plot, summary, and table ----
     tabsetPanel(type = "tabs",
                 tabPanel("Introduction", value = 1, br(), textOutput("intro1"), br(),
-                         textOutput("intro2"), br(), textOutput("title1"), br(), 
-                         uiOutput("formula1"), br(), textOutput("title2"), br(),
+                         textOutput("intro2"), br(), h4("Problem Statement"), br(), 
+                         uiOutput("formula1"), br(), h4("Solution"), br(),
                          uiOutput("formula2"), br(), 
                          tags$a(href="https://drive.google.com/file/d/1RWLVoSndeENN-aKNZqbS19h1gXwKSR5E/view?usp=sharing", 
                                 "Complete derivation(open in browser before you click)"), br(), br()),
@@ -36,9 +36,9 @@ ui <- fluidPage(
                   mainPanel(fluidRow(splitLayout(cellWidths = c("50%", "50%"), plotOutput("ybardistPlot"), plotOutput("sigmadistPlot")))),
                   br(), br(), 
                   ),
-                tabPanel("Predictions", value = 3, br(), h1("Biden Approval Rating by Month"), textOutput("explanation1"), br(), sidebarPanel(
+                tabPanel("Predictions", value = 3, br(), h1("Historic Biden Approval Rating by Month"), textOutput("explanation1"), br(), sidebarPanel(
                   br(),
-                  sliderInput("months", "Months into the Biden Administration", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
+                  sliderInput("months", "Months into the Biden Administration", 1, 36, 12), br()), mainPanel(plotOutput("predsbymonth")),
                   br(),
                   br(),
                   h1("Recent Biden Approval Ratings by Day"),
@@ -193,8 +193,7 @@ server <- function(input, output) {
            Between then and now, there have been 36 months of polls conducted. 
            'Time in Months' is the number of months since polling started, and 
            roughly represents the number of months since the beginning of his 
-           presidency. A 'Time in Months' of 36 indicates the most recent prediction,
-           the monthly prediction of December 2023. These predictions are made cumulatively by month using all of the polling data.
+           presidency. These predictions are made cumulatively by month using all of the polling data in the given time frame.
            Use the sliding scale to see how Biden's approval rating fluctuates from the beginning of his 
            administration onward.")
   })
@@ -203,11 +202,11 @@ server <- function(input, output) {
         mutate(bymonth = floor_date(date(end_date), unit="month")) %>% 
         mutate(count = match(bymonth, sort(unique(bymonth), decreasing = FALSE)))
       Y_bars <- c()
-      for (i in (length(unique(newpolls$bymonth))-input$months):length(unique(newpolls$bymonth))) {
+      for (i in 1:input$months) {
         sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
         Y_bars <- append(Y_bars, mean(sample$Y_bar))
       }
-      ybardf <- data.frame(survey_month = c((length(unique(newpolls$bymonth))-input$months):length(unique(newpolls$bymonth))), approval_pred = Y_bars)
+      ybardf <- data.frame(survey_month = c(1:input$months), approval_pred = Y_bars)
       ggplot(ybardf, aes(survey_month, Y_bars)) + geom_line() + xlab("Time in Months")+
         ylab("Approval Rating")
         })

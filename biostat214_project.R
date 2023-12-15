@@ -71,8 +71,13 @@ server <- function(input, output) {
            point of view.  We will be mainly focusing on demonstrating how Biden's
            apprival rating's have changed with time since the beggining of his term 
            until now(12/10/2023). Doing so, we hope our work helps to indicate
+<<<<<<< HEAD
            just how likely Biden is to win a second term. \n
            The model is specified below:")
+=======
+           just how likely Biden is to win a second term. The model
+           is specified below:")
+>>>>>>> b9740e57b269e84ea9b7cb49f4b1fea13dbf5704
   })
   output$title1 <- renderText({return("1: Problem Statement")})
   output$formula1 <- renderUI({
@@ -107,6 +112,11 @@ server <- function(input, output) {
                   \\end{align*}')
     )
   })
+<<<<<<< HEAD
+=======
+         
+
+>>>>>>> b9740e57b269e84ea9b7cb49f4b1fea13dbf5704
   
   # Only run once
   Polls <- read.csv("approval_polllist.csv")
@@ -167,7 +177,7 @@ server <- function(input, output) {
   })
   
   output$explanation1 <- renderText({
-    return("This plot illustrates the progression of Biden's approval rating 
+    return("This plot illustrates the progression of Biden's approval rating on a monthly basis 
            since the beginning of his presidency.  Use the sliding scale to 
            see how Biden's rating fluctuates from the beginning of his 
            adminitration onward.")

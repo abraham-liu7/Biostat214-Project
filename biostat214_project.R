@@ -71,13 +71,8 @@ server <- function(input, output) {
            point of view.  We will be mainly focusing on demonstrating how Biden's
            apprival rating's have changed with time since the beggining of his term 
            until now(12/10/2023). Doing so, we hope our work helps to indicate
-<<<<<<< HEAD
-           just how likely Biden is to win a second term. \n
-           The model is specified below:")
-=======
-           just how likely Biden is to win a second term. The model
-           is specified below:")
->>>>>>> b9740e57b269e84ea9b7cb49f4b1fea13dbf5704
+           just how likely Biden is to win a second term. The model is specified 
+           below:")
   })
   output$title1 <- renderText({return("1: Problem Statement")})
   output$formula1 <- renderUI({
@@ -86,16 +81,15 @@ server <- function(input, output) {
       helpText('\\begin{align*}
                   \\{(n_1, \\overline{y}_1, s_1^2), (n_2, \\overline{y}_2, s_2^2), 
                   \\ldots, (n_T, \\overline{y}_T, s_T^2)\\}
-                  \\end{align*}'),
+                \\end{align*}'),
       helpText('where the surveys are independently collected, 
                and the data points come from the distribution:'),
       helpText('\\begin{align*}
-                  y_1, \\ldots, y_n | \\mu, \\sigma^2 & \\sim \\mathcal{N}(\\mu, \\sigma^2)\\\\
-                  \\mu | \\sigma^2 &\\sim \\mathcal{N}\\left(\\theta, \\frac{\\sigma^2}{n_0}\\right)\\\\
+                  y_1, \\ldots, y_n | \\mu, \\sigma^2 & \\sim N(\\mu, \\sigma^2)\\\\
+                  \\mu | \\sigma^2 &\\sim N\\left(\\theta, \\frac{\\sigma^2}{n_0}\\right)\\\\
                   \\sigma^2 & \\sim IG(a_0, b_0)
                 \\end{align*}'),
-      helpText('find
-                $$\\begin{align*}
+      helpText('find $$\\begin{align*}
                   P(\\overline{Y}, \\sigma^2 | D_t)
                 \\end{align*} \\!$$'),
       helpText('where $$D_t = \\{(n_1, \\overline{y}_1, s_1^2), \\ldots, 
@@ -105,18 +99,21 @@ server <- function(input, output) {
   output$title2 <- renderText({return("2: Answer:")})
   output$formula2 <- renderUI({
     withMathJax(
-      helpText('Suppose you are given the following data from T surveys:'),
       helpText('\\begin{align*}
-                  \\{(n_1, \\overline{y}_1, s_1^2), (n_2, \\overline{y}_2, s_2^2), 
-                  \\ldots, (n_T, \\overline{y}_T, s_T^2)\\}
-                  \\end{align*}')
+                  P(\\overline{Y}, \\sigma^2 | D_t) \\sim  
+                  N(\\overline{Y} | M_Tm_T, \\sigma^2 M_T) 
+                  \\cdot IG(\\sigma^2 | a_T, b_T)
+                \\end{align*}'),
+      helpText('\\begin{align*}
+                  M_T^{-1} &= \\sum_{i=0}^T \\lambda_i\\\\
+                  m_T &= \\sum_{i=0}^T \\lambda_i \\overline{\\mathbf{y}}_i\\\\
+                  a_T &= a_0 + \\sum_{i=1}^T\\frac{n_i}{2}\\\\
+                  b_T &= b_0 + \\frac{1}{2}\\left[\\left(\\sum_{i=1}^T (n_i-1) s_i^2\\right) 
+                    + \\left(\\sum_{i=1}^T \\lambda_i \\overline{\\mathbf{y}}_i^2\\right)  
+                    + M_0 m_0^2 -  M_T m_T^2 \\right]
+                \\end{align*}')
     )
   })
-<<<<<<< HEAD
-=======
-         
-
->>>>>>> b9740e57b269e84ea9b7cb49f4b1fea13dbf5704
   
   # Only run once
   Polls <- read.csv("approval_polllist.csv")

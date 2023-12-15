@@ -71,8 +71,8 @@ server <- function(input, output) {
            point of view.  We will be mainly focusing on demonstrating how Biden's
            apprival rating's have changed with time since the beggining of his term 
            until now(12/10/2023). Doing so, we hope our work helps to indicate
-           just how likely Biden is to win a second term. The model is specified 
-           below:")
+           just how likely Biden is to win a second term. \n
+           The model is specified below:")
   })
   output$title1 <- renderText({return("1: Problem Statement")})
   output$formula1 <- renderUI({
@@ -111,7 +111,15 @@ server <- function(input, output) {
                   b_T &= b_0 + \\frac{1}{2}\\left[\\left(\\sum_{i=1}^T (n_i-1) s_i^2\\right) 
                     + \\left(\\sum_{i=1}^T \\lambda_i \\overline{\\mathbf{y}}_i^2\\right)  
                     + M_0 m_0^2 -  M_T m_T^2 \\right]
-                \\end{align*}')
+                \\end{align*}'),
+      helpText('We will denote: $$
+                \\begin{align*}
+                  \\lambda_0 &= \\frac{n_0}{1 + f_0}\\\\
+                  \\lambda_i &= \\frac{n_i}{1 - f_i} \\hspace{0.5 cm} i = 1,2,\\ldots, T\\\\
+                  M_i^{-1} &= \\sum_{j=0}^i \\lambda_j \\hspace{0.5 cm} j = 0,1,2,\\ldots, T\\\\
+                  m_i &= \\sum_{j=0}^i \\lambda_j \\overline{\\mathbf{y}}_j \\hspace{0.5 cm} j = 0,1,2,\\ldots, T
+                \\end{align*} \\!$$'),
+      helpText('where we abuse notation and call $$\\overline{\\mathbf{y}}_0 = \\theta \\!$$.')
     )
   })
   

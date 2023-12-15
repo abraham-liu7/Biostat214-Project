@@ -168,7 +168,7 @@ server <- function(input, output) {
   })
   
   output$explanation1 <- renderText({
-    return("This plot illustrates the progression of Biden's approval rating 
+    return("This plot illustrates the progression of Biden's approval rating on a monthly basis 
            since the beginning of his presidency.  Use the sliding scale to 
            see how Biden's rating fluctuates from the beginning of his 
            adminitration onward.")

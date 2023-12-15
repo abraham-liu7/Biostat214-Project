@@ -29,9 +29,13 @@ ui <- fluidPage(
                   mainPanel(fluidRow(splitLayout(cellWidths = c("50%", "50%"), plotOutput("ybardistPlot"), plotOutput("sigmadistPlot")))),
                   br(), br(), 
                   ),
-                tabPanel("Predictions", value = 3, br(), sidebarPanel(
+                tabPanel("Predictions", value = 3, br(), textOutput("explanation1"), br(), sidebarPanel(
                   br(),
-                  sliderInput("months", "Number of Survey Months", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth"))),
+                  sliderInput("months", "Number of Survey Months", 1, 36, 36), br()), mainPanel(plotOutput("predsbymonth")),
+                  br(),
+                  textOutput("explanation2"), br(), sidebarPanel(
+                    br(),
+                    sliderInput("days", "Last X Days of Surveys", 1, 880, 100), br()), mainPanel(plotOutput("lastdays")), br()),
                 id = "conditionedPanels"
     )
   )
@@ -112,9 +116,12 @@ server <- function(input, output) {
              ggtitle("Posterior Distribution of the Finite Population Variance"))
   })
   
+  output$explanation1 <- renderText({
+    return("Some kind of explanation...")
+  })
   output$predsbymonth <- renderPlot({
       newpolls <- Polls %>% mutate(bymonth = floor_date(date(end_date), unit="month")) %>% 
-        mutate(count = match(bymonth, sort(unique(bymonth)))) %>% ungroup()
+        mutate(count = match(bymonth, sort(unique(bymonth))))
       Y_bars <- c()
       for (i in 1:input$months) {
         sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
@@ -123,7 +130,19 @@ server <- function(input, output) {
       ybardf <- data.frame(survey_month = c(1:input$months), approval_pred = Y_bars)
       ggplot(ybardf, aes(survey_month, Y_bars)) + geom_line()
         })
-  
+  output$explanation2 <- renderText({
+    return("Some kind of explanation...")
+  })
+  output$lastdays <- renderPlot({
+    newpolls <- Polls %>% mutate(count = match(end_date, sort(unique(end_date), decreasing = TRUE)))
+    Y_bars <- c()
+    for (i in 1:input$days) {
+      sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
+      Y_bars <- append(Y_bars, mean(sample$Y_bar))
+    }
+    ybardf <- data.frame(days_since = c(1:input$days), approval_pred = Y_bars)
+    ggplot(ybardf, aes(days_since, Y_bars)) + geom_line()
+  })
 }
 
 # Run the application

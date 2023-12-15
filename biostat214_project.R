@@ -135,14 +135,14 @@ server <- function(input, output) {
     return("Some kind of explanation...")
   })
   output$lastdays <- renderPlot({
-    newpolls <- Polls %>% mutate(count = match(end_date, sort(unique(end_date), decreasing = TRUE)))
+    newpolls <- Polls %>% mutate(count = match(end_date, sort(unique(end_date), decreasing = FALSE)))
     Y_bars <- c()
-    for (i in 1:input$days) {
+    for (i in (880-input$days):880) {
       sample <- newpolls %>% filter(count %in% 1:i) %>% posterior_sampler()
       Y_bars <- append(Y_bars, mean(sample$Y_bar))
     }
-    ybardf <- data.frame(days_since = c(1:input$days), approval_pred = Y_bars)
-    ggplot(ybardf, aes(days_since, Y_bars)) + geom_line()
+    ybardf <- data.frame(survey_day = c((880-input$days):880), approval_pred = Y_bars)
+    ggplot(ybardf, aes(survey_day, Y_bars)) + geom_line()
   })
 }
 
